@@ -4,15 +4,24 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
     "eslint": "^7.8.1",
     "express": "4.17.1",
-    "sequelize": "^6.3.4",
+    "pino": "^6.5.1",
+    "pino-pretty": "^4.2.0",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
     "sqlite3": "^4.2.0"
   },
   "scripts": {
     "dev": "nodemon ./src/server.js",
     "start": "nodemon ./src/server.js",
-    "seed": "node ./scripts/seedDb.js"
+    "db:migrate": "./node_modules/.bin/sequelize db:migrate",
+    "db:migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:seed": "./node_modules/.bin/sequelize db:seed:all",
+    "db:seed:undo": "./node_modules/.bin/sequelize db:seed:undo:all",
+    "db:sync": "npm run db:migrate && npm run db:seed",
+    "db:sync:undo": "npm run db:seed:undo && npm run db:migrate:undo"
   },
   "devDependencies": {
     "concurrently": "4.1.0",
@@ -27,7 +36,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-unicorn": "21.0.0",
-    "nodemon": "1.19.1",
+    "nodemon": "^2.0.4",
     "prettier": "^2.1.1",
     "prettier-eslint": "^11.0.0"
   },

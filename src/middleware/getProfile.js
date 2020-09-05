@@ -1,5 +1,6 @@
+const { Profile } = require('../models');
+
 const getProfile = async (req, res, next) => {
-  const { Profile } = req.app.get('models');
   const id = req.get('profile_id');
 
   const profile = await Profile.findOne({

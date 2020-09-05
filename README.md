@@ -1,4 +1,8 @@
-# TEST
+# DEEL BACKEND TASK
+
+Seed data:
+
+- `npm run db:sync` - create all tables and fill them with feed data
 
 Routes for testing:
 

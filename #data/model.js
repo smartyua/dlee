@@ -34,23 +34,30 @@ Profile.init(
   }
 );
 
-class Contract extends Sequelize.Model {}
+class Contract extends Sequelize.Model {
+  static init(instance, DataTypes) {
+    console.log(instance);
+    console.log(DataTypes);
 
-Contract.init(
-  {
-    terms: {
-      type: Sequelize.TEXT,
-      allowNull: false
+    return super.init({
+      terms: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      status: {
+        type: DataTypes.ENUM('new', 'in_progress', 'terminated')
+      }
     },
-    status: {
-      type: Sequelize.ENUM('new', 'in_progress', 'terminated')
-    }
-  },
-  {
-    sequelize,
-    modelName: 'Contract'
+    {
+      instance,
+      modelName: 'Contract'
+    });
   }
-);
+
+  static findAll(contractorId) {
+    return this.findAll({ where: { ContractorId: contractorId } });
+  }
+}
 
 class Job extends Sequelize.Model {}
 Job.init(
@@ -77,16 +84,18 @@ Job.init(
   }
 );
 
-Profile.hasMany(Contract, { as: 'Contractor', foreignKey: 'ContractorId' });
-Contract.belongsTo(Profile, { as: 'Contractor' });
-Profile.hasMany(Contract, { as: 'Client', foreignKey: 'ClientId' });
-Contract.belongsTo(Profile, { as: 'Client' });
-Contract.hasMany(Job);
-Job.belongsTo(Contract);
+// Contract.init(sequelize, Sequelize);
+
+// Profile.hasMany(Contract, { as: 'Contractor', foreignKey: 'ContractorId' });
+// Contract.belongsTo(Profile, { as: 'Contractor' });
+// Profile.hasMany(Contract, { as: 'Client', foreignKey: 'ClientId' });
+// Contract.belongsTo(Profile, { as: 'Client' });
+// Contract.hasMany(Job);
+// Job.belongsTo(Contract);
 
 module.exports = {
   sequelize,
-  Profile,
+  // Profile,
   Contract,
-  Job
+  // Job
 };
