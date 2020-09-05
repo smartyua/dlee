@@ -1,8 +1,15 @@
-# DEEL BACKEND TASK
+# TEST
+
+## Commands:
+- `npm i` - install all dependencies
+- `npm run lint` - Lint checking
+- `npm run dev` - start server in devmode with hotreload
+- `npm start` - start server in production mode
+- `npm run db:migrate` - apply all migrations (or create from scratch DB)
 
 Seed data:
 
-- `npm run db:sync` - create all tables and fill them with feed data
+- `npm run db:sync` - fill them with feed data
 
 Routes for testing:
 

@@ -15,7 +15,8 @@
   },
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "start": "nodemon ./src/server.js",
+    "start": "NODE_ENV=production node ./src/server.js",
+    "lint": "eslint --ignore-path .eslintignore .",
     "db:migrate": "./node_modules/.bin/sequelize db:migrate",
     "db:migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "db:seed": "./node_modules/.bin/sequelize db:seed:all",

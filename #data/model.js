@@ -34,31 +34,6 @@ Profile.init(
   }
 );
 
-class Contract extends Sequelize.Model {
-  static init(instance, DataTypes) {
-    console.log(instance);
-    console.log(DataTypes);
-
-    return super.init({
-      terms: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-      status: {
-        type: DataTypes.ENUM('new', 'in_progress', 'terminated')
-      }
-    },
-    {
-      instance,
-      modelName: 'Contract'
-    });
-  }
-
-  static findAll(contractorId) {
-    return this.findAll({ where: { ContractorId: contractorId } });
-  }
-}
-
 class Job extends Sequelize.Model {}
 Job.init(
   {
@@ -94,8 +69,8 @@ Job.init(
 // Job.belongsTo(Contract);
 
 module.exports = {
-  sequelize,
+  sequelize
   // Profile,
-  Contract,
+  // Contract,
   // Job
 };
